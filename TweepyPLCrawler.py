@@ -1,6 +1,7 @@
-from tweepy import OAuthHandler, Stream, StreamListener 
+from tweepy import Stream
 import json, os, sys
 #These are our keys generated with our development account application 
+
 
 consumer_key="OvtaSdGdSFYG2enOytwNOtdea"
 consumer_secret="W4Z8Zki6aQ2hiOE4sv0e6S7BwDHUsJG9nMS1qxzYNCeNCe0b5G"
@@ -20,7 +21,7 @@ def saveToJsonFile(jsonObj):
     outfile.close()
 
 
-class StreamListener(StreamListener):
+class StreamListener(Stream):
     #This is where the main functionality is written.  The listener has 2 functions built in that act 
     #depending on successful tweet pull or failure.
     def on_data(self, data):
@@ -28,7 +29,11 @@ class StreamListener(StreamListener):
         dataJson = json.loads(data)
         saveToJsonFile(dataJson) 
         return True
-
+        
+    def on_connection_error(self):
+        self.disconnect()
+        print("Error:Could not connect!")
+        
     def on_error(self, status):
         print(status)
 
@@ -47,10 +52,11 @@ if __name__ == '__main__':
         os.mkdir(dataDirectory + "/" + sys.argv[1]) 
     
     filterList.append(sys.argv[1])
-    l = StreamListener()
-    auth = OAuthHandler(consumer_key, consumer_secret)
-    auth.set_access_token(access_token, access_token_secret)
-    stream = Stream(auth, l)
+    # l = StreamListener()
+    # auth = OAuthHandler(consumer_key, consumer_secret)
+    # auth.set_access_token(access_token, access_token_secret)
+    stream = StreamListener(consumer_key=consumer_key, consumer_secret=consumer_secret,\
+        access_token=access_token,access_token_secret=access_token_secret)
     stream.filter(track=filterList)
 
 
