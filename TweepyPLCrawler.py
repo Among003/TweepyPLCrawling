@@ -1,5 +1,6 @@
 from tweepy import Stream
-import json, os, sys
+import json, os, sys 
+from kafka import KafkaConsumer, KafkaProducer
 #These are our keys generated with our development account application 
 
 
@@ -13,11 +14,15 @@ access_token_secret="HoiZyEXwrBUIHDKiI3U1VXEZ1uvBgRj6VfTuYE6u44M5X"
 filterList = []
 dataDirectory = "JSONData"
 
+prod = KafkaProducer(bootstrap_servers='localhost:9092')
+topic_name = 'tweets'
+
 
 def saveToJsonFile(jsonObj):
     outfile = open(dataDirectory + "/" + sys.argv[1] + "/" +jsonObj.get("id_str") + ".json", 'w')
     print("Saving tweet: ", jsonObj.get("id_str"))
     json.dump(jsonObj, outfile, indent = 5)
+    prod.send(topic_name, str.encode(str(jsonObj)))
     outfile.close()
 
 
