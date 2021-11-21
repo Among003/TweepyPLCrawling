@@ -13,10 +13,14 @@ ssc = StreamingContext(sc, 60)      #throws error
 tweets = ssc.socketTextStream("localhost", 9092)
 '''
 spark = SparkSession.builder.master("local").appName("twitter").getOrCreate()
-df = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "host1:port1,host2:port2").option("subscribe", "tweets").load() #throwing error
-print(tweets)
+df = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "localhost:9092").option("subscribe", "tweets").load() #throwing error
 
-tweets = tweets.flatMap(lambda line: line.split("\n")) #Should split tweets as they come in, then we push to mongo db for now
+while 1:
+    query = df.writeStream.outputMode("append").format("console").start()
+    query.awaitTermination()
+    print("PRINTING DF" + query.latest())
+
+#tweets = tweets.flatMap(lambda line: line.split("\n")) #Should split tweets as they come in, then we push to mongo db for now
 
 #for msg in consumer:
 #        print (msg)

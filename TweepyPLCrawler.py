@@ -21,7 +21,7 @@ topic_name = 'tweets'
 def saveToJsonFile(jsonObj):
     outfile = open(dataDirectory + "/" + sys.argv[1] + "/" +jsonObj.get("id_str") + ".json", 'w')
     print("Saving tweet: ", jsonObj.get("id_str"))
-    json.dump(jsonObj, outfile, indent = 5)
+    #json.dump(jsonObj, outfile, indent = 5)
     prod.send(topic_name, str.encode(str(jsonObj)))
     outfile.close()
 
