@@ -22,7 +22,7 @@ def saveToJsonFile(jsonObj):
     outfile = open(dataDirectory + "/" + sys.argv[1] + "/" +jsonObj.get("id_str") + ".json", 'w')
     print("Saving tweet: ", jsonObj.get("id_str"))
     #json.dump(jsonObj, outfile, indent = 5)
-    prod.send(topic_name, str.encode(str(jsonObj)))
+    prod.send(topic_name, jsonObj.encode('utf-8'))
     outfile.close()
 
 
@@ -30,9 +30,10 @@ class StreamListener(Stream):
     #This is where the main functionality is written.  The listener has 2 functions built in that act 
     #depending on successful tweet pull or failure.
     def on_data(self, data):
-        
         dataJson = json.loads(data)
-        saveToJsonFile(dataJson) 
+        print("Saving tweet: ", dataJson.get("id_str"))
+        prod.send(topic_name, data)
+        # saveToJsonFile(data) 
         return True
         
     def on_connection_error(self):

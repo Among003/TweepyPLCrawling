@@ -1,29 +1,35 @@
-import json, os, sys
-from kafka import KafkaConsumer
-from pyspark import SparkContext
 from pyspark.sql import SparkSession
-from pyspark.streaming import StreamingContext
+from pyspark.sql.avro.functions import *
+from kafka.serializer.abstract import Serializer,Deserializer
+from pyspark.sql.avro.functions import from_avro, to_avro
 
+'''
+This program is designed to run on the spark cluster.
+It subscribes to messages from kafka and processes them using NLP
+'''
 
-#consumer = KafkaConsumer('tweets')   #This is working, but we want spark streaming to process datastreams
-'''
-sc = SparkContext(appName="tweets")
-sc.setLogLevel("WARN")
-ssc = StreamingContext(sc, 60)      #throws error
-tweets = ssc.socketTextStream("localhost", 9092)
-'''
+jsonSchema = open("/Users/abraham/Projects/TweepyUtils/schema","r").read()
+
+#MASTER NODE
 spark = SparkSession.builder.master("local").appName("twitter").getOrCreate()
-df = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "localhost:9092").option("subscribe", "tweets").load() #throwing error
+df = spark.readStream \
+    .format("kafka") \
+    .option("kafka.bootstrap.servers", "localhost:9092")\
+    .option("subscribe", "tweets")\
+    .option("startingOffsets","earliest")\
+    .load().select(from_avro("value",jsonSchema))
 
-while 1:
-    query = df.writeStream.outputMode("append").format("console").start()
-    query.awaitTermination()
-    print("PRINTING DF" + query.latest())
+print("READSTREAM COMPLETE")
 
-#tweets = tweets.flatMap(lambda line: line.split("\n")) #Should split tweets as they come in, then we push to mongo db for now
 
-#for msg in consumer:
-#        print (msg)
+
+query = df.writeStream.outputMode("append").format("console").start()
+query.awaitTermination()
+
+
+
+
+
 
 
 
