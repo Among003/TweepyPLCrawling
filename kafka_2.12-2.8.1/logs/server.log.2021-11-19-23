@@ -1,3 +1,0 @@
-[2021-11-20 09:12:03,502] INFO Expiring session 0x1001a249bbc0000, timeout of 18000ms exceeded (org.apache.zookeeper.server.ZooKeeperServer)
-[2021-11-20 09:12:04,538] WARN fsync-ing the write ahead log in SyncThread:0 took 1009ms which will adversely effect operation latency. File size is 67108880 bytes. See the ZooKeeper troubleshooting guide (org.apache.zookeeper.server.persistence.FileTxnLog)
-[2021-11-20 09:12:05,498] INFO Invalid session 0x1001a249bbc0000 for client /127.0.0.1:64819, probably expired (org.apache.zookeeper.server.ZooKeeperServer)
