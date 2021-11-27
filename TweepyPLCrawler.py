@@ -1,6 +1,12 @@
 from tweepy import Stream
 import json, os, sys 
 from kafka import KafkaConsumer, KafkaProducer
+from pyspark.sql.avro.functions import *
+from kafka.serializer.abstract import Serializer,Deserializer 
+from pyspark.sql.avro.functions import from_avro, to_avro
+import avro.schema
+from avro.datafile import DataFileReader, DataFileWriter
+from avro.io import DatumReader, DatumWriter
 #These are our keys generated with our development account application 
 
 
@@ -17,6 +23,7 @@ dataDirectory = "JSONData"
 prod = KafkaProducer(bootstrap_servers='localhost:9092')
 topic_name = 'tweets'
 
+schema = avro.schema.parse(open("schema").read())
 
 def saveToJsonFile(jsonObj):
     outfile = open(dataDirectory + "/" + sys.argv[1] + "/" +jsonObj.get("id_str") + ".json", 'w')
@@ -30,9 +37,19 @@ class StreamListener(Stream):
     #This is where the main functionality is written.  The listener has 2 functions built in that act 
     #depending on successful tweet pull or failure.
     def on_data(self, data):
+        writer = DataFileWriter(open("tempAvro", "wb"), DatumWriter(), schema)
         dataJson = json.loads(data)
+        arvoJson = {}
+        arvoJson["created_at"] = dataJson["created_at"]
+        arvoJson["id_str"] = dataJson["id_str"]
+        arvoJson["text"] = dataJson["text"]
+        writer.close()
+        bytesDataFile = open("tempAvro", "rb")
+        bytesData = bytesDataFile.read()
+
         print("Saving tweet: ", dataJson.get("id_str"))
-        prod.send(topic_name, data)
+        
+        prod.send(topic_name, bytesData)
         # saveToJsonFile(data) 
         return True
         
