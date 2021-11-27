@@ -16,10 +16,13 @@ df = spark.readStream \
     .option("startingOffsets","earliest")\
     .load()
 
-df_data = df.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+df_data = df.selectExpr("CAST(value AS STRING)")
 
 print("READSTREAM COMPLETE")
 
+#TODO NLP 
+
+#TODO
 
 
 query = df_data.writeStream.outputMode("append").format("console").start()
