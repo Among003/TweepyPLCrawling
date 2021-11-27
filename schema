@@ -1,0 +1,19 @@
+{
+  "name": "twitter_data",
+  "type": "record",
+  "namespace": "com.abraham.avro",
+  "fields": [
+    {
+      "name": "created_at",
+      "type": "string"
+    },
+    {
+      "name": "id_str",
+      "type": "string"
+    },
+    {
+      "name": "text",
+      "type": "string"
+    }
+  ]
+}
