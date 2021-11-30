@@ -38,6 +38,7 @@ class StreamListener(Stream):
         stream_json["created_at"] = dataJson["created_at"]
         stream_json["id_str"] = dataJson["id_str"]
         stream_json["text"] = dataJson["text"]
+        stream_json["sentiment"] = "0"
 
         print("Saving tweet: ", dataJson.get("id_str"))
         
