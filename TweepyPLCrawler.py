@@ -24,7 +24,7 @@ topic_name = 'tweets'
 def saveToJsonFile(jsonObj):
     outfile = open(dataDirectory + "/" + sys.argv[1] + "/" +jsonObj.get("id_str") + ".json", 'w')
     print("Saving tweet: ", jsonObj.get("id_str"))
-    #json.dump(jsonObj, outfile, indent = 5)
+    json.dump(jsonObj, outfile, indent = 5)
     prod.send(topic_name, jsonObj.encode('utf-8'))
     outfile.close()
 
@@ -34,19 +34,20 @@ class StreamListener(Stream):
     #depending on successful tweet pull or failure.
     def on_data(self, data):
         dataJson = json.loads(data)
-        if dataJson['lang'] == 'en':
-            stream_json = {}
-            stream_json["created_at"] = dataJson["created_at"]
-            stream_json["id_str"] = dataJson["id_str"]
-            stream_json["text"] = dataJson["text"]
-            stream_json["coordinates"] = dataJson["coordinates"]
-            stream_json["sentiment"] = "0"
-            
+        try:
+            if dataJson['lang'] == 'en':
+                stream_json = {}
+                stream_json["created_at"] = dataJson["created_at"]
+                stream_json["id_str"] = dataJson["id_str"]
+                stream_json["text"] = dataJson["text"]
+                stream_json["coordinates"] = dataJson["coordinates"]
+                stream_json["sentiment"] = "0"
             print("Saving tweet: ", dataJson.get("id_str"))
-            
-            # prod.send(topic_name, bytesData)
+            #saveToJsonFile(dataJson)
             prod.send(topic_name,json.dumps(stream_json).encode('utf-8'))
-        # saveToJsonFile(data)
+        except:
+            print("nope")
+            # prod.send(topic_name, bytesData)
         else:
             print("Ignoring non-english tweet..") 
         return True
