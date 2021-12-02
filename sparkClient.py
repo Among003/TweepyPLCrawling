@@ -19,7 +19,18 @@ j_schema = StructType([StructField("created_at",StringType()),
 StructField("id_str",StringType()),
 StructField("text",StringType()),
 StructField("sentiment", StringType()),
+StructField("coordinates",StructType([
+    StructField("type", StringType()),
+    StructField("geometry", StructType([
+      StructField("coordinates", StringType()),
+      StructField("type", StringType(), False)
+    ]), False),
+    StructField("properties", MapType(StringType(), StringType()))
+]))
 ])
+
+
+
 
 
 #MASTER NODE
@@ -73,15 +84,15 @@ json_df2=json_df.withColumn("sentiment", udf((json_df.text))).select("id_str","t
 #TODO
 
 #query = json_df.writeStream.foreach(process).start()
-query = json_df2.writeStream.outputMode("append").format("console").option("truncate",False).start()
-query.awaitTermination()
+# query = json_df2.writeStream.outputMode("append").format("console").option("truncate",False).start()
+# query.awaitTermination()
 
 #This writes the data to parquet
 
 
 # df_data = df.selectExpr("CAST(value AS STRING)")
-#df_writer = DataStreamWriter(json_df).format("parquet").option("checkpointLocation","/tmp/spark_checkpoints").option("path", "/Users/abraham/Projects/TweepyUtils/processed_data").start()
-#df_writer.awaitTermination()
+df_writer = DataStreamWriter(json_df2).format("parquet").option("checkpointLocation","/tmp/spark_checkpoints").option("path", "/Users/abraham/Projects/TweepyUtils/processed_data").start()
+df_writer.awaitTermination()
 
 
 

@@ -34,17 +34,21 @@ class StreamListener(Stream):
     #depending on successful tweet pull or failure.
     def on_data(self, data):
         dataJson = json.loads(data)
-        stream_json = {}
-        stream_json["created_at"] = dataJson["created_at"]
-        stream_json["id_str"] = dataJson["id_str"]
-        stream_json["text"] = dataJson["text"]
-        stream_json["sentiment"] = "0"
-
-        print("Saving tweet: ", dataJson.get("id_str"))
-        
-        # prod.send(topic_name, bytesData)
-        prod.send(topic_name,json.dumps(stream_json).encode('utf-8'))
-        # saveToJsonFile(data) 
+        if dataJson['lang'] == 'en':
+            stream_json = {}
+            stream_json["created_at"] = dataJson["created_at"]
+            stream_json["id_str"] = dataJson["id_str"]
+            stream_json["text"] = dataJson["text"]
+            stream_json["coordinates"] = dataJson["coordinates"]
+            stream_json["sentiment"] = "0"
+            
+            print("Saving tweet: ", dataJson.get("id_str"))
+            
+            # prod.send(topic_name, bytesData)
+            prod.send(topic_name,json.dumps(stream_json).encode('utf-8'))
+        # saveToJsonFile(data)
+        else:
+            print("Ignoring non-english tweet..") 
         return True
         
     def on_connection_error(self):
