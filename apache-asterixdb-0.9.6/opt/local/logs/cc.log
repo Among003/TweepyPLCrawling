@@ -1,0 +1,34 @@
+00:09:40.827 [Worker:ClusterController] INFO  org.apache.hyracks.control.cc.work.JobCleanupWork - Cleanup for job: JID:0.17
+00:10:32.057 [Worker:ClusterController] INFO  org.apache.hyracks.control.cc.work.JobCleanupWork - Cleanup for job: JID:0.18
+00:10:54.856 [Worker:ClusterController] INFO  org.apache.hyracks.control.cc.work.JobCleanupWork - Cleanup for job: JID:0.19
+00:11:08.849 [Worker:ClusterController] INFO  org.apache.hyracks.control.cc.work.JobCleanupWork - Cleanup for job: JID:0.20
+00:11:17.288 [Worker:ClusterController] INFO  org.apache.hyracks.control.cc.work.JobCleanupWork - Cleanup for job: JID:0.21
+01:21:51.643 [HttpExecutor(port:19002)-5] INFO  org.apache.asterix.runtime.utils.ClusterStateManager - updating cluster state from ACTIVE to SHUTTING_DOWN
+01:21:51.645 [HttpExecutor(port:19002)-5] INFO  org.apache.asterix.runtime.utils.ClusterStateManager - Cluster State is now SHUTTING_DOWN
+01:21:51.686 [Worker:ClusterController] INFO  org.apache.hyracks.control.cc.work.ClusterShutdownWork - Notifying NC asterix_nc2 to shutdown...
+01:21:51.688 [Worker:ClusterController] INFO  org.apache.hyracks.control.cc.work.ClusterShutdownWork - Notifying NC asterix_nc1 to shutdown...
+01:21:51.689 [ClusterShutdownWork-Helper] INFO  org.apache.hyracks.control.cc.work.ClusterShutdownWork - Waiting for NCs to shutdown...
+01:21:54.106 [Worker:ClusterController] INFO  org.apache.hyracks.control.cc.work.NotifyShutdownWork - Received shutdown acknowledgement from node asterix_nc2
+01:21:54.164 [Worker:ClusterController] INFO  org.apache.hyracks.control.cc.work.NotifyShutdownWork - Received shutdown acknowledgement from node asterix_nc1
+01:21:54.169 [Worker:ClusterController] INFO  org.apache.hyracks.control.cc.work.ShutdownNCServiceWork - Connecting to NC service 'asterix_nc1' at 127.0.0.1:9090
+01:21:54.171 [Worker:ClusterController] INFO  org.apache.hyracks.control.cc.work.ShutdownNCServiceWork - Connecting to NC service 'asterix_nc2' at 127.0.0.1:9091
+01:21:54.172 [ClusterShutdownWork-Helper] INFO  org.apache.hyracks.control.cc.ClusterControllerService - Stopping ClusterControllerService
+01:21:54.172 [ClusterShutdownWork-Helper] INFO  org.apache.asterix.hyracks.bootstrap.CCApplication - Stopping Asterix cluster controller
+01:21:54.172 [ClusterShutdownWork-Helper] INFO  org.apache.asterix.runtime.utils.ClusterStateManager - ignoring update to same cluster state of SHUTTING_DOWN
+01:21:54.173 [ActiveNotificationHandler] WARN  org.apache.hyracks.api.util.SingleThreadEventProcessor - Stopped ActiveNotificationHandler
+01:21:54.173 [ClusterShutdownWork-Helper] INFO  org.apache.asterix.metadata.bootstrap.AsterixStateProxy - Asterix Distributed State Proxy Unbound
+01:21:54.542 [TCPEndpoint IO Thread [null]] ERROR org.apache.hyracks.net.protocols.tcp.TCPEndpoint - Unexpected tcp io error in connection TCPConnection[Remote Address: /127.0.0.1:54590 Local Address: null]
+org.apache.hyracks.api.exceptions.NetException: Socket Closed
+	at org.apache.hyracks.net.protocols.muxdemux.MultiplexedConnection.driveReaderStateMachine(MultiplexedConnection.java:360) ~[hyracks-net-0.3.6.jar:0.3.6]
+	at org.apache.hyracks.net.protocols.muxdemux.MultiplexedConnection.notifyIOReady(MultiplexedConnection.java:119) ~[hyracks-net-0.3.6.jar:0.3.6]
+	at org.apache.hyracks.net.protocols.tcp.TCPEndpoint$IOThread.run(TCPEndpoint.java:199) [hyracks-net-0.3.6.jar:0.3.6]
+01:21:54.542 [TCPEndpoint IO Thread [null]] ERROR org.apache.hyracks.net.protocols.tcp.TCPEndpoint - Unexpected tcp io error in connection TCPConnection[Remote Address: /127.0.0.1:54590 Local Address: null]
+org.apache.hyracks.api.exceptions.NetException: Socket Closed
+	at org.apache.hyracks.net.protocols.muxdemux.MultiplexedConnection.driveReaderStateMachine(MultiplexedConnection.java:360) ~[hyracks-net-0.3.6.jar:0.3.6]
+	at org.apache.hyracks.net.protocols.muxdemux.MultiplexedConnection.notifyIOReady(MultiplexedConnection.java:119) ~[hyracks-net-0.3.6.jar:0.3.6]
+	at org.apache.hyracks.net.protocols.tcp.TCPEndpoint$IOThread.run(TCPEndpoint.java:199) [hyracks-net-0.3.6.jar:0.3.6]
+01:21:54.577 [TCPEndpoint IO Thread [null]] ERROR org.apache.hyracks.net.protocols.tcp.TCPEndpoint - Unexpected tcp io error in connection TCPConnection[Remote Address: /127.0.0.1:54594 Local Address: null]
+org.apache.hyracks.api.exceptions.NetException: Socket Closed
+	at org.apache.hyracks.net.protocols.muxdemux.MultiplexedConnection.driveReaderStateMachine(MultiplexedConnection.java:360) ~[hyracks-net-0.3.6.jar:0.3.6]
+	at org.apache.hyracks.net.protocols.muxdemux.MultiplexedConnection.notifyIOReady(MultiplexedConnection.java:119) ~[hyracks-net-0.3.6.jar:0.3.6]
+	at org.apache.hyracks.net.protocols.tcp.TCPEndpoint$IOThread.run(TCPEndpoint.java:199) [hyracks-net-0.3.6.jar:0.3.6]

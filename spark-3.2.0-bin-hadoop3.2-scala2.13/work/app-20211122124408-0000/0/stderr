@@ -1,0 +1,3 @@
+Spark Executor Command: "/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/java" "-cp" "/Users/abraham/Projects/sources/spark-3.2.0-bin-hadoop3.2-scala2.13/conf/:/Users/abraham/Projects/sources/spark-3.2.0-bin-hadoop3.2-scala2.13/jars/*" "-Xmx1024M" "-Dspark.driver.port=49479" "org.apache.spark.executor.CoarseGrainedExecutorBackend" "--driver-url" "spark://CoarseGrainedScheduler@10.0.27.210:49479" "--executor-id" "0" "--hostname" "10.0.27.210" "--cores" "8" "--app-id" "app-20211122124408-0000" "--worker-url" "spark://Worker@10.0.27.210:49472"
+========================================
+

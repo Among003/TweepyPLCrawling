@@ -1,0 +1,56 @@
+--------------------------
+Thu Dec  9 20:23:16 PST 2021
+--------------------------
+Using Java version: 1.8.0_311
+Exception in thread "main" java.net.BindException: Address already in use (Bind failed)
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.AbstractPlainSocketImpl.bind(AbstractPlainSocketImpl.java:513)
+	at java.net.ServerSocket.bind(ServerSocket.java:375)
+	at java.net.ServerSocket.<init>(ServerSocket.java:237)
+	at org.apache.hyracks.control.nc.service.NCService.main(NCService.java:297)
+--------------------------
+Thu Dec  9 20:24:43 PST 2021
+--------------------------
+Using Java version: 1.8.0_311
+20:24:44.279 [main] INFO  org.apache.hyracks.control.nc.service.NCService - Waiting for connection from CC on *:9090
+--------------------------
+Thu Dec  9 20:28:50 PST 2021
+--------------------------
+Using Java version: 1.8.0_311
+Exception in thread "main" java.net.BindException: Address already in use (Bind failed)
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.AbstractPlainSocketImpl.bind(AbstractPlainSocketImpl.java:513)
+	at java.net.ServerSocket.bind(ServerSocket.java:375)
+	at java.net.ServerSocket.<init>(ServerSocket.java:237)
+	at org.apache.hyracks.control.nc.service.NCService.main(NCService.java:297)
+20:28:52.889 [main] INFO  org.apache.hyracks.control.nc.service.NCService - Using JAVA_OPTS from conf file (jvm.args)
+20:28:52.890 [main] INFO  org.apache.hyracks.control.nc.service.NCService - Setting JAVA_OPTS to -XX:MaxGCPauseMillis=25000 -Xmx4916m
+20:28:52.890 [main] INFO  org.apache.hyracks.control.nc.service.NCService - Launching NCDriver process
+Using Java version: 1.8.0_311
+20:28:54.306 [main] WARN  org.apache.hyracks.control.nc.NCLogConfigurationFactory - logs are being redirected to: /Users/abraham/Projects/sources/apache-asterixdb-0.9.6/opt/local/logs/nc-asterix_nc1.log
+22:49:16.022 [main] INFO  org.apache.hyracks.control.nc.service.NCService - NCDriver exited with return value 99
+22:49:16.035 [main] INFO  org.apache.hyracks.control.nc.service.NCService - Terminating NCService based on return value from NCDriver
+22:49:16.035 [main] INFO  org.apache.hyracks.control.nc.service.NCService - JVM Exiting.. Bye!
+--------------------------
+Thu Dec  9 22:49:39 PST 2021
+--------------------------
+Using Java version: 1.8.0_311
+22:49:41.387 [main] INFO  org.apache.hyracks.control.nc.service.NCService - Waiting for connection from CC on *:9090
+22:49:42.965 [main] INFO  org.apache.hyracks.control.nc.service.NCService - Using JAVA_OPTS from conf file (jvm.args)
+22:49:42.966 [main] INFO  org.apache.hyracks.control.nc.service.NCService - Setting JAVA_OPTS to -XX:MaxGCPauseMillis=25000 -Xmx4916m
+22:49:42.966 [main] INFO  org.apache.hyracks.control.nc.service.NCService - Launching NCDriver process
+Using Java version: 1.8.0_311
+22:49:44.301 [main] WARN  org.apache.hyracks.control.nc.NCLogConfigurationFactory - logs are being redirected to: /Users/abraham/Projects/sources/apache-asterixdb-0.9.6/opt/local/logs/nc-asterix_nc1.log
+--------------------------
+Thu Dec  9 22:50:19 PST 2021
+--------------------------
+Using Java version: 1.8.0_311
+22:50:20.857 [main] INFO  org.apache.hyracks.control.nc.service.NCService - Waiting for connection from CC on *:9090
+22:50:22.337 [main] INFO  org.apache.hyracks.control.nc.service.NCService - Using JAVA_OPTS from conf file (jvm.args)
+22:50:22.338 [main] INFO  org.apache.hyracks.control.nc.service.NCService - Setting JAVA_OPTS to -XX:MaxGCPauseMillis=25000 -Xmx4916m
+22:50:22.338 [main] INFO  org.apache.hyracks.control.nc.service.NCService - Launching NCDriver process
+Using Java version: 1.8.0_311
+22:50:23.664 [main] WARN  org.apache.hyracks.control.nc.NCLogConfigurationFactory - logs are being redirected to: /Users/abraham/Projects/sources/apache-asterixdb-0.9.6/opt/local/logs/nc-asterix_nc1.log
+01:21:54.598 [main] INFO  org.apache.hyracks.control.nc.service.NCService - NCDriver exited with return value 99
+01:21:54.611 [main] INFO  org.apache.hyracks.control.nc.service.NCService - Terminating NCService based on return value from NCDriver
+01:21:54.612 [main] INFO  org.apache.hyracks.control.nc.service.NCService - JVM Exiting.. Bye!

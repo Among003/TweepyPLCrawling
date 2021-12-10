@@ -1,0 +1,10 @@
+Spark Executor Command: "/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/java" "-cp" "/Users/abraham/Projects/sources/spark-3.2.0-bin-hadoop3.2-scala2.13/conf/:/Users/abraham/Projects/sources/spark-3.2.0-bin-hadoop3.2-scala2.13/jars/*" "-Xmx1024M" "-Dspark.driver.port=50054" "org.apache.spark.executor.CoarseGrainedExecutorBackend" "--driver-url" "spark://CoarseGrainedScheduler@ucr-secure-38-10-13-201-95.wnet.ucr.edu:50054" "--executor-id" "685" "--hostname" "10.0.27.210" "--cores" "8" "--app-id" "app-20211122171551-0003" "--worker-url" "spark://Worker@10.0.27.210:49472"
+========================================
+
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+21/11/22 20:45:34 INFO CoarseGrainedExecutorBackend: Started daemon with process name: 7358@Abrahams-MacBook-Air.local
+21/11/22 20:45:34 INFO SignalUtils: Registering signal handler for TERM
+21/11/22 20:45:34 INFO SignalUtils: Registering signal handler for HUP
+21/11/22 20:45:34 INFO SignalUtils: Registering signal handler for INT
+21/11/22 20:45:34 WARN Utils: Your hostname, Abrahams-MacBook-Air.local resolves to a loopback address: 127.0.0.1; using 10.0.31.50 instead (on interface en0)
+21/11/22 20:45:34 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
