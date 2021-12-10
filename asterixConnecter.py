@@ -6,7 +6,7 @@ import json
 
 #READING PARQUET FILE 
 
-df = pd.read_parquet("df.parquet")
+df = pd.read_parquet("processed_data")
 asterix_url = "http://localhost:19002/query/service"
 
 df.dropna()
@@ -59,6 +59,12 @@ for data in list_data[0:10]:
 
 select_query = "select * from twitter_data.ArsenalTweets;"
 
-# select_resp = requests.post(asterix_url,data={'statement':select_query})
+select_resp = requests.post(asterix_url,data={'statement':select_query})
+
+result_dict = json.loads(select_resp.content)
+
+final_dat = df.from_dict(result_dict)
+
+final_dat.to_parquet("newdf.parquet")
 
 
