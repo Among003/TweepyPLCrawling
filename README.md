@@ -1,7 +1,7 @@
 #Start Zookeeper and Kafka
 
-./kafka-2.8.1-src/bin/zookeeper-server-start.sh config/zookeeper.properties
-./kafka-2.8.1-src/bin/kafka-server-start.sh config/server.properties
+>./kafka-2.8.1-src/bin/zookeeper-server-start.sh config/zookeeper.properties
+>./kafka-2.8.1-src/bin/kafka-server-start.sh config/server.properties
 
 #Create Kafka Topic named tweets
 
