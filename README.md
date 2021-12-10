@@ -23,6 +23,7 @@
 
 # To Visualize data
 
+> python3 visualize.py
 
 
 
