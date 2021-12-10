@@ -1,7 +1,7 @@
 import pandas as pd
 import requests
 import re 
-
+import json
 
 
 #READING PARQUET FILE 
@@ -34,32 +34,31 @@ CREATE DATASET ArsenalTweets(tweet)
 
 select_tables = "select * from Metadata.`Dataverse`;"
 
-create_resp = requests.post(asterix_url,data={"statement" : select_tables})
+#create_resp = requests.post(asterix_url,data={"statement" : select_tables})
 
 # QUERY TO INSERT TWEETS INTO DB
 
-pattern = re.compile('[\W]+')
+pattern = re.compile('[\W]+[\s]+[.]+')
 
-insert_query = 'INSERT INTO ArsenalTweets(['
 
 list_data = df.to_dict('records')
-for data in list_data:
+for data in list_data[0:10]:
+    insert_query = 'INSERT INTO twitter_data.ArsenalTweets('
     old_String = data['text']
     new_String = pattern.sub('', old_String)
     data['text'] = new_String
     insert_query += str(data)
-    insert_query += ','
-insert_query = insert_query[:-1]
-insert_query += ']);'
+    insert_query += ');'
+    requests.post(asterix_url,data={'statement':insert_query})
 
-print(insert_query)
 
-insert_resp = requests.post(asterix_url,data={'statement':insert_query})
 
 
 
 #SELECT QUERY 
 
-select_query = "select * from ArsenalTweets;"
+select_query = "select * from twitter_data.ArsenalTweets;"
 
-select_resp = requests.post(asterix_url,data={'statement':select_query})
+# select_resp = requests.post(asterix_url,data={'statement':select_query})
+
+
