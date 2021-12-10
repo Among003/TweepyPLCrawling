@@ -1,26 +1,27 @@
-#Start Zookeeper and Kafka
+# Start Zookeeper and Kafka
 
->./kafka-2.8.1-src/bin/zookeeper-server-start.sh config/zookeeper.properties
->./kafka-2.8.1-src/bin/kafka-server-start.sh config/server.properties
+> ./kafka-2.8.1-src/bin/zookeeper-server-start.sh config/zookeeper.properties
 
-#Create Kafka Topic named tweets
+> ./kafka-2.8.1-src/bin/kafka-server-start.sh config/server.properties
 
-./kafka-2.8.1-src/bin/kafka-console-consumer.sh --topic tweets --from-beginning --bootstrap-server localhost:9092
+# Create Kafka Topic named tweets
 
-#Install python dependencies
-pip3 install -r reqs
+> ./kafka-2.8.1-src/bin/kafka-console-consumer.sh --topic tweets --from-beginning --bootstrap-server localhost:9092
 
-#Activate new environment
+# Install python dependencies
+> pip3 install -r reqs
 
-#Start Tweepy Listener
-python3 TweepyPLCrawler.py <hashtag>
+# Activate new environment
 
-#Start spark-submit after adding spark bins to path
+# Start Tweepy Listener
+> python3 TweepyPLCrawler.py arsenal
+
+# Start spark-submit after adding spark bins to path
   
-spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.0 sparkClient.py
+> spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.0 sparkClient.py
 
 
-#To Visualize data
+# To Visualize data
 
 
 
