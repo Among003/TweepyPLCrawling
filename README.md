@@ -12,11 +12,14 @@
 > pip3 install -r reqs
 
 # Activate new environment
+> source /path/to/bin/activate
+# Add spark bins to path
+> export SPARK_HOME="/path/to/spark"
 
 # Start Tweepy Listener
 > python3 TweepyPLCrawler.py arsenal
 
-# Start spark-submit after adding spark bins to path
+# Start spark-submit 
   
 > spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.0 sparkClient.py
 
